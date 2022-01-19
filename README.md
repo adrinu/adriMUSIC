@@ -25,12 +25,14 @@ A music bot for Discord Servers
 
 ## Roadmap
 
-- Queue system
 - Edge cases for commands
 - Optimize code, make it run faster
 - Parse YouTube Titles better
 - Search on other websites like soundcloud.com
 - Seperate classes, functions, etc into files
+- Comment code
+- Cleaner messages
+- Other commands like skip, nowplaying
 
 ## Run Locally
 
