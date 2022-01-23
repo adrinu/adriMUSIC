@@ -10,17 +10,25 @@ A music bot for Discord Servers
 - Get the lyrics without going on a web explorer
 
 
-
 ## Commands
 
-| Command | Paramemeter | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `!play`   | `youtube_link or query` | Directly plays from youtube link or search up a song|
-| `!lyrics` |  | Displays current song lyrics|
-| `!pause` |  | Pauses the song|
-| `!resume` |  | Resume the song|
-| `!stats` |  | Displays stats of youtube video (Likes, Views, etc)|
-| `!disconnect` |  | Disconnects bot from the voice channel |
+|  Command             |  Aliases |        Paramemeter      | Description                       |
+| :------------------- | :------- | :---------------------- | :-------------------------------- |
+| `!play`              | `!p`     | `youtube_link or query` | Directly plays from youtube link or search up a song|
+| `!lyrics`            |          |                         | Displays current song lyrics|
+| `!pause`             |          |                         | Pauses the song |
+| `!resume`            |          |                         | Resume the song |
+| `!stats`             |          |                         | Displays stats of youtube video (Likes, Views, etc)|
+| `!disconnect`        |          |                         | Disconnects bot from the voice channel |
+| `!queue`             | `!q`     |                         | Displays songs in the queue |
+| `!remove`            |          | `song # in queue`       | Removes a song in the queue given the number|
+| `!botstats`          |          |                         | Displays bot stats|
+| `!skip`              |          |                         | Skips current song|
+| `!skipto`            |          | `song # in queue`       | Skips to a song in the queue |
+| `!clear`             |          |                         | Clears the queue |
+| `!move`              |          | `song # in queue`, `song # in queue`       | Skips to a song in the queue |
+| `!nowplaying`        | `!np`    |                         | Displays what song is currently playing |
+
 
 
 ## Roadmap
@@ -32,7 +40,7 @@ A music bot for Discord Servers
 - Seperate classes, functions, etc into files
 - Comment code
 - Cleaner messages
-- Other commands like skip, nowplaying
+
 
 ## Run Locally
 

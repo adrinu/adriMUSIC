@@ -116,16 +116,20 @@ class Track:
         messages.append(message.replace("EmbedShare", "").replace("URLCopyEmbedCopy", ""))
         return messages
                 
-            
 class MusicBot(commands.Cog):
     def __init__(self, bot) -> None:
         self.bot = bot
         self.q = deque()
         self.is_connected = False
         self.current_track = None
+        
+        self.skips = 0
+        self.requested_songs = 0
+        self.removed = 0
 
     @commands.command(aliases=['p'])
     async def play(self, ctx, *query):
+        self.requested_songs += 1
         query = " ".join(query)
         if ctx.author.voice:
             if not self.is_connected:
@@ -173,6 +177,7 @@ class MusicBot(commands.Cog):
 
     @commands.command()
     async def remove(self, ctx, number):
+        self.removed += 1
         try:
             title = self.q[int(number)-1].title
             self.q.remove(self.q[int(number)-1])
@@ -187,6 +192,27 @@ class MusicBot(commands.Cog):
             await ctx.send("https://tenor.com/view/ight-imma-head-out-spongebob-imma-head-out-ima-head-out-gif-14902967")
         except AttributeError:
             await ctx.send("adriMUSIC has disconnected from the voice channel! Play a song!")
+    
+    @commands.command()
+    async def move(self, ctx, q1, q2):
+        if (0 < int(q1) < len(q1)) and (0 < int(q2) < len(q1)):
+            await ctx.send("Oh oh! One of the songs is out of position in the queue. Try again!")
+        else:
+            await ctx.send("**Swapping #{} with #{} in the queue!**".format(q1, q2))
+            self.q[int(q1)-1], self.q[int(q2)-1] = self.q[int(q2)-1], self.q[int(q1)-1]
+    
+    @commands.command()
+    async def botstats(self, ctx):
+        await ctx.send("**__adriMUSIC Bot Stats__**")
+        await ctx.send("**Removed Songs** - {}\n**Songs Requested** - {}\n**Songs Skip** - {}".format(self.removed, self.requested_songs, self.skips))
+    
+    @commands.command()
+    async def clear(self, ctx):
+        await ctx.send("🚮 **Clearing the queue**")
+        while len(self.q) != 0:
+            self.q.popleft()
+        await ctx.send("**Queue is cleared!")
+    
     # --------------------------- Current Song Actions --------------------------- #
     @commands.command()
     async def pause(self, ctx):
@@ -226,14 +252,43 @@ class MusicBot(commands.Cog):
         else:
             await ctx.send("No song is playing!")
     
+    @commands.command()
+    async def skip(self, ctx):
+        if ctx.voice_client.is_playing():
+            ctx.voice_client.pause()
+        self.skips += 1
+        await ctx.send("⏭ **Skipping song**")
+        self.play_next(ctx)
     
+    @commands.command()
+    async def skipto(self, ctx, num):
+        q_num = int(num) - 1
+        await ctx.send("⏩ **Skipping to** {}".format(self.q[q_num].title))
+        if ctx.voice_client.is_playing():
+            ctx.voice_client.pause()
+        while len(self.q) != 0 and q_num != 0:
+            self.skips += 1
+            self.q.popleft()
+            q_num -= 1
+        self.play_next(ctx)
+      
+    @commands.command(aliases=["np"])
+    async def nowplaying(self, ctx):
+        if self.current_track:
+            await ctx.send("**The song playing right now is called** {} by {} ".format(self.current_track.title, self.current_track.artist))
+        else:
+            await ctx.send("**No song is currently playing")
+        
     # ------------------------------- Fun Commands ------------------------------- #
     @commands.command()
     async def ayo(self, ctx):
         ayos = ["https://tenor.com/view/ayo-ay-yo-gif-24007574", "https://tenor.com/view/angryfan-pause-hold-up-wait-gif-13284505", "https://tenor.com/view/sidetalk-ayo-ayoo-ayooo-glizzy-gif-23903684"]
         await ctx.send(random.choice(ayos))
-        
-        
+    
+    @commands.command()
+    async def sourcecode(self, ctx):
+        await ctx.send("Here is the link to code ... {}".format("https://github.com/adrinu/adriMUSIC"))
+
 if __name__ == "__main__":
     bot = commands.Bot(command_prefix="!")
     bot.add_cog(MusicBot(bot))
