@@ -85,6 +85,13 @@ class MusicBot(commands.Cog):
             await ctx.send("adriMUSIC has disconnected from the voice channel! Play a song!")
     
     @commands.command()
+    async def connect(self, ctx):
+        try:
+            await ctx.author.voice.channel.connect()
+            await ctx.send("https://media2.giphy.com/media/ORjfgiG9ZtxcQQwZzv/giphy.gif")
+        except:
+            await ctx.send("im already connected")
+    @commands.command()
     async def move(self, ctx, q1, q2):
         if (0 < int(q1) < len(q1)) and (0 < int(q2) < len(q1)):
             await ctx.send("Oh oh! One of the songs is out of position in the queue. Try again!")
