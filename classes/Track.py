@@ -33,6 +33,12 @@ class Track:
             artist = artists[0]
             if len(artists) > 1:
                 features.extend([featured.strip() for featured in artists[1:]])
+                
+            # Some songs use ' x ' for features
+            if " x " in a:
+                artists = a.split(" x ")
+                artist = artists[0]
+                features.extend([featured.strip() for featured in artists[1:]])
             
             # Removes anything in [] & ()
             found = False
