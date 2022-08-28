@@ -1,7 +1,6 @@
 
 from settings import YOUTUBE as yt
 from Stats import Stat
-from Lyrics import Lyrics
 
 class Track:
     def __init__(self, query = "") -> None:

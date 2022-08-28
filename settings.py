@@ -24,5 +24,4 @@ YOUTUBE = build('youtube', 'v3', developerKey=getenv("API_KEY"))
 GENIUS = lyricsgenius.Genius(access_token=getenv("GENIUS_TOKEN"),skip_non_songs=True, excluded_terms=["(Remix)", "(Live)"], remove_section_headers=True)
 
 # PATH
-#sys.path.append(path.join(pathlib.Path("classes").resolve()))
 sys.path.insert(0, path.join(pathlib.Path("classes").resolve()))

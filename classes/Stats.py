@@ -14,4 +14,3 @@ class Stat():
         else:
             self.views = ""
             self.likes = ""
-    

@@ -56,7 +56,7 @@ class MusicBot(commands.Cog):
         else:
             self.current_track = None
       
-    @commands.command()
+    @commands.command(aliases=["q"])
     async def queue(self, ctx):
         if self.current_track:
             await ctx.send("**Currently Playing**: {} by {}".format(self.current_track.title, self.current_track.artist))

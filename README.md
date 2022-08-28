@@ -1,14 +1,11 @@
-
 # music bot
 
 A music bot for Discord Servers
-
 
 ## Features
 
 - Play songs in your discord server
 - Get the lyrics without going on a web explorer
-
 
 ## Commands
 
@@ -19,6 +16,7 @@ A music bot for Discord Servers
 | `!pause`             |          |                         | Pauses the song |
 | `!resume`            |          |                         | Resume the song |
 | `!stats`             |          |                         | Displays stats of youtube video (Likes, Views, etc)|
+| `!connect`           |          |                         | Connects bot to voice channel
 | `!disconnect`        |          |                         | Disconnects bot from the voice channel |
 | `!queue`             | `!q`     |                         | Displays songs in the queue |
 | `!remove`            |          | `song # in queue`       | Removes a song in the queue given the number|
@@ -29,18 +27,12 @@ A music bot for Discord Servers
 | `!move`              |          | `song # in queue`, `song # in queue`       | Skips to a song in the queue |
 | `!nowplaying`        | `!np`    |                         | Displays what song is currently playing |
 
-
-
 ## Roadmap
-
 - Edge cases for commands
 - Optimize code, make it run faster
-- Parse YouTube Titles better
 - Search on other websites like soundcloud.com
-- Seperate classes, functions, etc into files
 - Comment code
 - Cleaner messages
-
 
 ## Run Locally
 
@@ -56,10 +48,11 @@ Go to the project directory
   cd my-project
 ```
 
-Create a .env file, add Discord Bot Token and Genius Token.
+Create a .env file, add Discord Bot Token, Genius Token, and YouTube API Key.
 ```
 TOKEN=discord_token
 GENIUS_TOKEN=genius token
+API_key=yt3 key
 ```
 
 Run main.py (python3.10)
@@ -68,10 +61,7 @@ Run main.py (python3.10)
   python main.py
 ```
 
-
 Make sure you invite the bot to your server! With that being said, go to your discord server and try it out!
-
-
 
 ## Contributing
 

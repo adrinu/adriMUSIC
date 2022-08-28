@@ -1,1 +1,0 @@
-print("Rauw Alejandro x Dalex x Lenny Tavarez x Dimelo Flow".split(" x "))
