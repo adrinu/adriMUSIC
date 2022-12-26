@@ -9,8 +9,8 @@ class Stat():
         response = req.execute()
         
         if response["items"][0]["id"] == id:
-            self.views = response["items"][0]["statistics"]["viewCount"]
-            self.likes = response["items"][0]["statistics"]["likeCount"]
+            self.views = '{:,}'.format(int(response["items"][0]["statistics"]["viewCount"]))
+            self.likes = '{:,}'.format(int(response["items"][0]["statistics"]["likeCount"]))
         else:
             self.views = ""
             self.likes = ""
