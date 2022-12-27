@@ -12,6 +12,7 @@ class MusicBot(commands.Cog):
         self.bot = bot
         self.q = deque()
         self.current_track = None
+        self.audio_volume = 1
     
     @commands.before_invoke
     async def isAuthorConnected(ctx):
@@ -30,7 +31,9 @@ class MusicBot(commands.Cog):
         with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
             info = ydl.extract_info(track.youtubeURL, download=False)
             url2 = info["formats"][0]["url"]
-            track.source = await discord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
+            source =  discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(url2, **FFMPEG_OPTIONS))
+            source.volume = self.audio_volume
+            track.source = source
         
         self.q.append(track)
         if ctx.voice_client.is_playing():
@@ -155,6 +158,12 @@ class MusicBot(commands.Cog):
             await ctx.send(">>> **Features**\t {}".format(", ".join(self.current_track.features)))
         else:
             await ctx.send("**No song is currently playing**")
+    
+    @commands.command()
+    async def volume(self, ctx, volume):
+        self.audio_volume = int(volume) / 100
+        self.current_track.source.volume = self.audio_volume
+        await ctx.send("🔊 **Music volume set to {}!**".format(volume))
         
     # ------------------------------- Miscellaneous Commands ------------------------------- #
     

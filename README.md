@@ -25,6 +25,7 @@ A music bot for Discord Servers
 | `!clear`             |          |                         | Clears the queue |
 | `!move`              |          | `song # in queue`, `song # in queue`       | Moves a song in the queue to another spot|
 | `!nowplaying`        | `!np`    |                         | Displays what song is currently playing |
+| `!volume`            |          |                         | Sets volume of the audio being played from the bot |
 
 ## Roadmap
 - Edge cases for commands
