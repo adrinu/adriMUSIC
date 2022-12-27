@@ -17,7 +17,6 @@ class Track:
         
         self.stats = Stat(self.id)
         self.artist, self.title, self.features = self.cleanUpTitle(response["items"][0]["snippet"]["title"])
-        self.source = None
     
     @staticmethod
     def cleanUpTitle(title):
