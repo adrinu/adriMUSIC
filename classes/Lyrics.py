@@ -2,15 +2,14 @@ from settings import GENIUS as genius
 
 class Lyrics:
     def __init__(self, artist, song_name) -> None:
-        
         try:
-            self.lyrics = genius.search_song(title=song_name, artist=artist).lyrics.replace("217EmbedShare URLCopyEmbedCopy", "")
+            self.lyrics = genius.search_song(title=song_name, artist=artist).lyrics
         except:
             try:
-                self.lyrics = genius.search_song(title=song_name).lyrics.replace("217EmbedShare URLCopyEmbedCopy", "")
+                self.lyrics = genius.search_song(title=song_name).lyrics
             except:
-                self.lyrics = "Could not get the lyrics for {} by {}".format(song_name, artist) 
-            
+                self.lyrics = "Could not get the lyrics for {} by {}".format(song_name, artist)      
+    
     def lyric_messages(self):
         temp = self.lyrics.split("\n")
         total_chars = 0
@@ -25,6 +24,5 @@ class Lyrics:
             else:
                 message += i + "\n"
                 total_chars += 1
-        messages.append(message.replace("EmbedShare", "").replace("URLCopyEmbedCopy", ""))
+        messages.append(message)
         return messages
-        

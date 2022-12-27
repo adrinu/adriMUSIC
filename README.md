@@ -19,12 +19,11 @@ A music bot for Discord Servers
 | `!connect`           |          |                         | Connects bot to voice channel
 | `!disconnect`        |          |                         | Disconnects bot from the voice channel |
 | `!queue`             | `!q`     |                         | Displays songs in the queue |
-| `!remove`            |          | `song # in queue`       | Removes a song in the queue given the number|
-| `!botstats`          |          |                         | Displays bot stats|
+| `!remove`            |          | `song # in queue`       | Removes a song in the queue |
 | `!skip`              |          |                         | Skips current song|
 | `!skipto`            |          | `song # in queue`       | Skips to a song in the queue |
 | `!clear`             |          |                         | Clears the queue |
-| `!move`              |          | `song # in queue`, `song # in queue`       | Skips to a song in the queue |
+| `!move`              |          | `song # in queue`, `song # in queue`       | Moves a song in the queue to another spot|
 | `!nowplaying`        | `!np`    |                         | Displays what song is currently playing |
 
 ## Roadmap
